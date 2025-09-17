@@ -3,599 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PropListAI - Professional Real Estate Listing Generator</title>
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #64748b;
-            --success-color: #059669;
-            --error-color: #dc2626;
-            --warning-color: #d97706;
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --border-focus: #3b82f6;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--background);
-            color: var(--text-primary);
-            line-height: 1.5;
-        }
-
-        .app-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
-        .header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: var(--background);
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-            width: 100%;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .page-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Form Styles */
-        .form-container {
-            background: var(--surface);
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-        }
-
-        .form-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .form-body {
-            padding: 2rem;
-        }
-
-        .form-section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--background);
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-        }
-
-        .section-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-input {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 0.375rem;
-            font-size: 1rem;
-            transition: all 0.2s;
-            background: var(--surface);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--border-focus);
-            box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.2s;
-        }
-
-        .checkbox-item:hover {
-            background: rgba(37, 99, 235, 0.05);
-        }
-
-        .checkbox-input {
-            width: auto !important;
-        }
-
-        /* Generate Button */
-        .generate-section {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .generate-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .generate-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .loading-spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 0.5rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Results Section */
-        .results-section {
-            margin-top: 3rem;
-            display: none;
-        }
-
-        .results-header {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .results-stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .error-message {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-            padding: 1rem;
-            border-radius: 0.375rem;
-            margin: 1rem 0;
-            display: none;
-        }
-
-        .success-message {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            padding: 1rem;
-            border-radius: 0.375rem;
-            margin: 1rem 0;
-            display: none;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--surface);
-            border-radius: 0.5rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .page-title {
-                font-size: 2rem;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .results-stats {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-
-        /* Utility Classes */
-        .hidden { display: none !important; }
-        .text-center { text-align: center; }
-        .text-sm { font-size: 0.875rem; }
-        .text-xs { font-size: 0.75rem; }
-        .font-medium { font-weight: 500; }
-        .font-semibold { font-weight: 600; }
-        .text-red-600 { color: var(--error-color); }
-        .text-green-600 { color: var(--success-color); }
-    </style>
+    <title>PropListAI - AI Real Estate Listing Generator</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="app-container">
         <header class="header">
             <div class="header-content">
-                <div class="logo">🏡 PropListAI</div>
+                <div class="logo">PropListAI</div>
                 <nav class="nav-actions">
-                    <button class="btn-secondary" onclick="showApiConfig()">⚙️ API Config</button>
-                    <button class="btn-secondary" onclick="exportAllListings()">📥 Export All</button>
-                    <button class="btn-primary" onclick="clearForm()">🔄 Reset</button>
+                    <button class="btn btn-secondary" onclick="showApiConfig()">
+                        ⚙️ API Config
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportAllListings()">
+                        📥 Export All
+                    </button>
+                    <button class="btn btn-primary" onclick="clearForm()">
+                        🔄 Reset
+                    </button>
                 </nav>
             </div>
         </header>
 
-        <main class="main-content">
-            <div class="page-header">
-                <h1 class="page-title">AI-Powered Listing Generator</h1>
-                <p class="page-subtitle">Create professional real estate listings optimized for multiple platforms using advanced AI technology</p>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">AI-Powered Real Estate Listings</h1>
+                <p class="hero-subtitle">Generate professional, engaging property listings in seconds using advanced AI technology. Save 40+ minutes per listing.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-label">Minutes Saved</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Platform Formats</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">AI Generated</span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div id="errorMessage" class="error-message"></div>
-            <div id="successMessage" class="success-message"></div>
+        <main class="main-content">
+            <div id="errorMessage" class="message error-message"></div>
+            <div id="successMessage" class="message success-message"></div>
 
-            <div class="form-container">
+            <div class="form-container animate-fade-in-up">
                 <div class="form-header">
-                    <h2>Property Information</h2>
+                    <h2 class="form-title">Property Information</h2>
                     <p>Fill out the details below to generate AI-optimized listings</p>
                 </div>
 
                 <form id="propertyForm" class="form-body">
                     <section class="form-section">
-                        <h3 class="section-title">
-                            <span>🏠</span>
-                            Basic Information
-                        </h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label" for="address">Street Address *</label>
-                                <input type="text" id="address" name="address" class="form-input" required placeholder="123 Main Street">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="city">City *</label>
-                                <input type="text" id="city" name="city" class="form-input" required placeholder="San Francisco">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="state">State *</label>
-                                <input type="text" id="state" name="state" class="form-input" required placeholder="CA">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="zipCode">ZIP Code *</label>
-                                <input type="text" id="zipCode" name="zipCode" class="form-input" required placeholder="94105">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="price">Listing Price *</label>
-                                <input type="number" id="price" name="price" class="form-input" required placeholder="750000">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="propertyType">Property Type *</label>
-                                <select id="propertyType" name="propertyType" class="form-input" required>
-                                    <option value="">Select property type</option>
-                                    <option value="single-family">Single Family Home</option>
-                                    <option value="condo">Condominium</option>
-                                    <option value="townhouse">Townhouse</option>
-                                    <option value="multi-family">Multi-Family</option>
-                                    <option value="land">Land/Lot</option>
-                                    <option value="commercial">Commercial</option>
-                                </select>
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <div class="section-icon">🏠</div>
+                                Basic Information
+                            </h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="address">Street Address *</label>
+                                    <input type="text" id="address" name="address" class="form-input" required placeholder="123 Main Street">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="city">City *</label>
+                                    <input type="text" id="city" name="city" class="form-input" required placeholder="San Francisco">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="state">State *</label>
+                                    <input type="text" id="state" name="state" class="form-input" required placeholder="CA">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="zipCode">ZIP Code *</label>
+                                    <input type="text" id="zipCode" name="zipCode" class="form-input" required placeholder="94105">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="price">Listing Price *</label>
+                                    <input type="number" id="price" name="price" class="form-input" required placeholder="750000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="propertyType">Property Type *</label>
+                                    <select id="propertyType" name="propertyType" class="form-input" required>
+                                        <option value="">Select property type</option>
+                                        <option value="single-family">Single Family Home</option>
+                                        <option value="condo">Condominium</option>
+                                        <option value="townhouse">Townhouse</option>
+                                        <option value="multi-family">Multi-Family</option>
+                                        <option value="land">Land/Lot</option>
+                                        <option value="commercial">Commercial</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </section>
 
                     <section class="form-section">
-                        <h3 class="section-title">
-                            <span>📐</span>
-                            Property Details
-                        </h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label" for="bedrooms">Bedrooms</label>
-                                <input type="number" id="bedrooms" name="bedrooms" class="form-input" min="0" placeholder="3">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="bathrooms">Bathrooms</label>
-                                <input type="number" id="bathrooms" name="bathrooms" class="form-input" min="0" step="0.5" placeholder="2.5">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="squareFootage">Square Footage</label>
-                                <input type="number" id="squareFootage" name="squareFootage" class="form-input" min="0" placeholder="2200">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="lotSize">Lot Size (sq ft)</label>
-                                <input type="number" id="lotSize" name="lotSize" class="form-input" min="0" placeholder="8000">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="yearBuilt">Year Built</label>
-                                <input type="number" id="yearBuilt" name="yearBuilt" class="form-input" min="1800" max="2025" placeholder="2015">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="garage">Garage Spaces</label>
-                                <input type="number" id="garage" name="garage" class="form-input" min="0" placeholder="2">
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <div class="section-icon">📐</div>
+                                Property Details
+                            </h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="bedrooms">Bedrooms</label>
+                                    <input type="number" id="bedrooms" name="bedrooms" class="form-input" min="0" placeholder="3">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="bathrooms">Bathrooms</label>
+                                    <input type="number" id="bathrooms" name="bathrooms" class="form-input" min="0" step="0.5" placeholder="2.5">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="squareFootage">Square Footage</label>
+                                    <input type="number" id="squareFootage" name="squareFootage" class="form-input" min="0" placeholder="2200">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lotSize">Lot Size (sq ft)</label>
+                                    <input type="number" id="lotSize" name="lotSize" class="form-input" min="0" placeholder="8000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="yearBuilt">Year Built</label>
+                                    <input type="number" id="yearBuilt" name="yearBuilt" class="form-input" min="1800" max="2025" placeholder="2015">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="garage">Garage Spaces</label>
+                                    <input type="number" id="garage" name="garage" class="form-input" min="0" placeholder="2">
+                                </div>
                             </div>
                         </div>
                     </section>
 
                     <section class="form-section">
-                        <h3 class="section-title">
-                            <span>✨</span>
-                            Features & Amenities
-                        </h3>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="pool" class="checkbox-input">
-                                <span>Swimming Pool</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="fireplace" class="checkbox-input">
-                                <span>Fireplace</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="hardwood-floors" class="checkbox-input">
-                                <span>Hardwood Floors</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="updated-kitchen" class="checkbox-input">
-                                <span>Updated Kitchen</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="master-suite" class="checkbox-input">
-                                <span>Master Suite</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="basement" class="checkbox-input">
-                                <span>Finished Basement</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="deck-patio" class="checkbox-input">
-                                <span>Deck/Patio</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="central-air" class="checkbox-input">
-                                <span>Central Air</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="walk-in-closet" class="checkbox-input">
-                                <span>Walk-in Closet</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="granite-counters" class="checkbox-input">
-                                <span>Granite Counters</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="stainless-appliances" class="checkbox-input">
-                                <span>Stainless Appliances</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="features" value="security-system" class="checkbox-input">
-                                <span>Security System</span>
-                            </label>
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <div class="section-icon">✨</div>
+                                Features & Amenities
+                            </h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="pool" class="checkbox-input">
+                                    <span>Swimming Pool</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="fireplace" class="checkbox-input">
+                                    <span>Fireplace</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="hardwood-floors" class="checkbox-input">
+                                    <span>Hardwood Floors</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="updated-kitchen" class="checkbox-input">
+                                    <span>Updated Kitchen</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="master-suite" class="checkbox-input">
+                                    <span>Master Suite</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="basement" class="checkbox-input">
+                                    <span>Finished Basement</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="deck-patio" class="checkbox-input">
+                                    <span>Deck/Patio</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="central-air" class="checkbox-input">
+                                    <span>Central Air</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="walk-in-closet" class="checkbox-input">
+                                    <span>Walk-in Closet</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="granite-counters" class="checkbox-input">
+                                    <span>Granite Counters</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="stainless-appliances" class="checkbox-input">
+                                    <span>Stainless Appliances</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="features" value="security-system" class="checkbox-input">
+                                    <span>Security System</span>
+                                </label>
+                            </div>
                         </div>
                     </section>
 
                     <section class="form-section">
-                        <h3 class="section-title">
-                            <span>📝</span>
-                            Additional Information
-                        </h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label" for="neighborhood">Neighborhood/School District</label>
-                                <input type="text" id="neighborhood" name="neighborhood" class="form-input" placeholder="Mission District, Top-rated schools">
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <div class="section-icon">📝</div>
+                                Additional Information
+                            </h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="neighborhood">Neighborhood/School District</label>
+                                    <input type="text" id="neighborhood" name="neighborhood" class="form-input" placeholder="Mission District, Top-rated schools">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="listingStyle">Listing Style</label>
+                                    <select id="listingStyle" name="listingStyle" class="form-input">
+                                        <option value="professional">Professional</option>
+                                        <option value="warm">Warm & Inviting</option>
+                                        <option value="luxury">Luxury</option>
+                                        <option value="modern">Modern & Sleek</option>
+                                        <option value="family-friendly">Family Friendly</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="listingStyle">Listing Style</label>
-                                <select id="listingStyle" name="listingStyle" class="form-input">
-                                    <option value="professional">Professional</option>
-                                    <option value="warm">Warm & Inviting</option>
-                                    <option value="luxury">Luxury</option>
-                                    <option value="modern">Modern & Sleek</option>
-                                    <option value="family-friendly">Family Friendly</option>
-                                </select>
+                                <label class="form-label" for="specialFeatures">Special Features & Recent Updates</label>
+                                <textarea id="specialFeatures" name="specialFeatures" class="form-input" rows="4" placeholder="Recently renovated kitchen with quartz countertops, smart home features, new roof, etc."></textarea>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="specialFeatures">Special Features & Recent Updates</label>
-                            <textarea id="specialFeatures" name="specialFeatures" class="form-input form-textarea" placeholder="Recently renovated kitchen with quartz countertops, smart home features, new roof, etc."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="additionalNotes">Additional Notes</label>
-                            <textarea id="additionalNotes" name="additionalNotes" class="form-input form-textarea" placeholder="Any other details that would help generate better listings..."></textarea>
+                            <div class="form-group">
+                                <label class="form-label" for="additionalNotes">Additional Notes</label>
+                                <textarea id="additionalNotes" name="additionalNotes" class="form-input" rows="4" placeholder="Any other details that would help generate better listings..."></textarea>
+                            </div>
                         </div>
                     </section>
 
                     <div class="generate-section">
                         <button type="submit" id="generateBtn" class="generate-btn">
                             <span class="loading-spinner" id="loadingSpinner"></span>
-                            <span id="btnText">Generate AI Listings</span>
+                            <span id="btnText">🚀 Generate AI Listings</span>
                         </button>
                     </div>
                 </form>
@@ -603,7 +246,7 @@
 
             <section id="resultsSection" class="results-section">
                 <div class="results-header">
-                    <h2>Generated Listings</h2>
+                    <h2 class="results-title">Generated Listings</h2>
                     <div class="results-stats">
                         <span>Generated in <strong id="generationTime">0</strong>s</span>
                         <span>•</span>
@@ -621,60 +264,33 @@
     <div id="apiModal" class="modal-overlay">
         <div class="modal">
             <div class="modal-header">
-                <h3 class="modal-title">API Configuration</h3>
+                <h3 class="modal-title">⚙️ API Configuration</h3>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label class="form-label" for="geminiApiKey">Gemini API Key</label>
                     <input type="password" id="geminiApiKey" class="form-input" placeholder="Enter your Gemini API key">
-                    <div class="text-xs" style="margin-top: 0.5rem; color: var(--text-secondary);">
-                        Your API key is stored locally and never sent to our servers.
+                    <div style="margin-top: 0.5rem; color: var(--gray-500); font-size: 0.875rem;">
+                        Your API key is stored locally and never sent to our servers. 
+                        <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: var(--primary-solid);">Get your free API key</a>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="apiModel">Model</label>
                     <select id="apiModel" class="form-input">
                         <option value="gemini-pro">Gemini Pro</option>
-                        <option value="gemini-pro-vision">Gemini Pro Vision</option>
+                        <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary" onclick="closeApiConfig()">Cancel</button>
-                <button type="button" class="btn-primary" onclick="saveApiConfig()">Save</button>
+                <button type="button" class="btn btn-secondary" onclick="closeApiConfig()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveApiConfig()">Save Configuration</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Placeholder JavaScript functions to prevent errors
-        function showApiConfig() {
-            document.getElementById('apiModal').style.display = 'flex';
-        }
-
-        function closeApiConfig() {
-            document.getElementById('apiModal').style.display = 'none';
-        }
-
-        function saveApiConfig() {
-            // Add your API config save logic here
-            closeApiConfig();
-        }
-
-        function exportAllListings() {
-            // Add your export logic here
-            console.log('Export functionality to be implemented');
-        }
-
-        function clearForm() {
-            document.getElementById('propertyForm').reset();
-        }
-
-        document.getElementById('propertyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            console.log('Form submission to be implemented');
-        });
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

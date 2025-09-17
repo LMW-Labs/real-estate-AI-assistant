@@ -65,4 +65,277 @@
                    
                               placeholder="CA">
                             </div>
-                            <div class
+                            <div class="form-group">
+                       
+                          <label class="form-label" for="zipCode">ZIP Code *</label>
+                                <input type="text" id="zipCode" name="zipCode" class="form-input" required 
+                                       placeholder="94105">
+          
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="price">Listing Price *</label>
+                 
+                          <input type="number" id="price" name="price" class="form-input" required 
+                                       placeholder="750000">
+                            </div>
+            
+                          <div class="form-group">
+                                <label class="form-label" for="propertyType">Property Type *</label>
+                                <select id="propertyType" name="propertyType" class="form-input" required>
+           
+                                 <option value="">Select property type</option>
+                                    <option value="single-family">Single Family Home</option>
+                                 
+                             <option value="condo">Condominium</option>
+                                    <option value="townhouse">Townhouse</option>
+                                    <option value="multi-family">Multi-Family</option>
+                      
+                             <option value="land">Land/Lot</option>
+                                    <option value="commercial">Commercial</option>
+                                </select>
+                
+                          </div>
+                        </div>
+                    </section>
+
+                    <section 
+ class="form-section">
+                        <h3 class="section-title">
+                            <span>📐</span>
+                            Property Details
+                  
+                          </h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="bedrooms">Bedrooms</label>
+      
+                              <input type="number" id="bedrooms" name="bedrooms" class="form-input" 
+                                       min="0" placeholder="3">
+                            </div>
+ 
+                            <div class="form-group">
+                                <label class="form-label" for="bathrooms">Bathrooms</label>
+                                <input type="number" id="bathrooms" name="bathrooms" class="form-input" 
+ 
+                                       min="0" step="0.5" placeholder="2.5">
+                            </div>
+                            <div class="form-group">
+   
+                              <label class="form-label" for="squareFootage">Square Footage</label>
+                                <input type="number" id="squareFootage" name="squareFootage" class="form-input" 
+                               
+                          min="0" placeholder="2200">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" 
+ for="lotSize">Lot Size (sq ft)</label>
+                                <input type="number" id="lotSize" name="lotSize" class="form-input" 
+                                       min="0" placeholder="8000">
+                    
+                          </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yearBuilt">Year Built</label>
+                            
+                              <input type="number" id="yearBuilt" name="yearBuilt" class="form-input" 
+                                       min="1800" max="2025" placeholder="2015">
+                            </div>
+                      
+                          <div class="form-group">
+                                <label class="form-label" for="garage">Garage Spaces</label>
+                                <input type="number" id="garage" name="garage" class="form-input" 
+                     
+                              min="0" placeholder="2">
+                            </div>
+                        </div>
+                    </section>
+
+         
+                    <section class="form-section">
+                        <h3 class="section-title">
+                            <span>✨</span>
+           
+                             Features & Amenities
+                        </h3>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+   
+                              <input type="checkbox" name="features" value="pool" class="checkbox-input">
+                                <span>Swimming Pool</span>
+                            </label>
+      
+                              <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="fireplace" class="checkbox-input">
+                                <span>Fireplace</span>
+         
+                           </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="hardwood-floors" class="checkbox-input">
+                
+                           <span>Hardwood Floors</span>
+                            </label>
+                            <label class="checkbox-item">
+                          
+                          <input type="checkbox" name="features" value="updated-kitchen" class="checkbox-input">
+                                <span>Updated Kitchen</span>
+                            </label>
+                            <label 
+ class="checkbox-item">
+                                <input type="checkbox" name="features" value="master-suite" class="checkbox-input">
+                                <span>Master Suite</span>
+                            </label>
+   
+                             <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="basement" class="checkbox-input">
+                                <span>Finished Basement</span>
+     
+                           </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="deck-patio" class="checkbox-input">
+            
+                              <span>Deck/Patio</span>
+                            </label>
+                            <label class="checkbox-item">
+                       
+                          <input type="checkbox" name="features" value="central-air" class="checkbox-input">
+                                <span>Central Air</span>
+                            </label>
+                          
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="walk-in-closet" class="checkbox-input">
+                                <span>Walk-in Closet</span>
+                            
+                           </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="granite-counters" class="checkbox-input">
+                                <span>Granite Counters</span>
+  
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="stainless-appliances" class="checkbox-input">
+         
+                              <span>Stainless Appliances</span>
+                            </label>
+                            <label class="checkbox-item">
+                   
+                              <input type="checkbox" name="features" value="security-system" class="checkbox-input">
+                                <span>Security System</span>
+                            </label>
+                      
+                          </div>
+                    </section>
+
+                    <section class="form-section">
+                        <h3 class="section-title">
+         
+                             <span>📝</span>
+                            Additional Information
+                        </h3>
+                        <div class="form-grid">
+   
+                              <div class="form-group">
+                                <label class="form-label" for="neighborhood">Neighborhood/School District</label>
+                                <input type="text" id="neighborhood" name="neighborhood" class="form-input" 
+  
+                                       placeholder="Mission District, Top-rated schools">
+                            </div>
+                            <div class="form-group">
+   
+                              <label class="form-label" for="listingStyle">Listing Style</label>
+                                <select id="listingStyle" name="listingStyle" class="form-input">
+                                 
+                             <option value="professional">Professional</option>
+                                    <option value="warm">Warm & Inviting</option>
+                                    <option value="luxury">Luxury</option>
+                    
+                             <option value="modern">Modern & Sleek</option>
+                                    <option value="family-friendly">Family Friendly</option>
+                                </select>
+           
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="specialFeatures">Special Features & Recent 
+ Updates</label>
+                            <textarea id="specialFeatures" name="specialFeatures" 
+                                    class="form-input form-textarea" 
+                               
+                              placeholder="Recently renovated kitchen with quartz countertops, smart home features, new roof, etc."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="additionalNotes">Additional Notes</label>
+       
+                             <textarea id="additionalNotes" name="additionalNotes" 
+                                    class="form-input form-textarea" 
+                                    placeholder="Any other 
+ details that would help generate better listings..."></textarea>
+                        </div>
+                    </section>
+
+                    <div class="generate-section">
+      
+                          <button type="submit" id="generateBtn" class="generate-btn">
+                            <span class="loading-spinner" id="loadingSpinner"></span>
+                            <span id="btnText">Generate AI Listings</span>
+                  
+                          </button>
+                    </div>
+                </form>
+            </div>
+
+            <section id="resultsSection" class="results-section">
+                <div 
+ class="results-header">
+                    <h2>Generated Listings</h2>
+                    <div class="results-stats">
+                        <span>Generated in <strong id="generationTime">0</strong>s</span>
+                        <span>•</span>
+       
+                          <span><strong id="listingCount">0</strong> listings created</span>
+                        <span>•</span>
+                        <span><strong id="totalWords">0</strong> total words</span>
+                    </div>
+         
+                    </div>
+                <div id="listingResults"></div>
+            </section>
+        </main>
+    </div>
+
+    <div id="apiModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                
+                <h3 class="modal-title">API Configuration</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="geminiApiKey">Gemini API Key</label>
+                    <input type="password" id="geminiApiKey" class="form-input" 
+        
+                           placeholder="Enter your Gemini API key">
+                    <div class="text-xs" style="margin-top: 0.5rem;
+ color: var(--text-secondary);">
+                        Your API key is stored locally and never sent to our servers.
+                    </div>
+                </div>
+                <div class="form-group">
+           
+                          <label class="form-label" for="apiModel">Model</label>
+                    <select id="apiModel" class="form-input">
+                        <option value="gemini-pro">Gemini Pro</option>
+                        <option value="gemini-pro-vision">Gemini Pro Vision</option>
+              
+                      </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeApiConfig()">Cancel</button>
+                <button type="button" class="btn-primary" onclick="saveApiConfig()">Save</button>
+            </div>
+   
+             </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

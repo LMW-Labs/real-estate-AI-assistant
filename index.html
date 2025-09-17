@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropListAI - Professional Real Estate Listing Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">🏡 PropListAI</div>
+                <nav class="nav-actions">
+                    <button class="btn-secondary" onclick="showApiConfig()">⚙️ API 
+ Config</button>
+                    <button class="btn-secondary" onclick="exportAllListings()">📥 Export All</button>
+                    <button class="btn-primary" onclick="clearForm()">🔄 Reset</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">AI-Powered Listing Generator</h1>
+                <p class="page-subtitle">Create professional real estate listings optimized for multiple platforms using advanced AI technology</p>
+            </div>
+
+         
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Property 
+ Information</h2>
+                    <p>Fill out the details below to generate AI-optimized listings</p>
+                </div>
+
+                <form id="propertyForm" class="form-body">
+                    <section class="form-section">
+                        <h3 class="section-title">
+                            <span>🏠</span>
+                            Basic Information
+            
+                        </h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" 
+ for="address">Street Address *</label>
+                                <input type="text" id="address" name="address" class="form-input" required 
+                                       placeholder="123 Main Street">
+                   
+                          </div>
+                            <div class="form-group">
+                                <label class="form-label" for="city">City *</label>
+                           
+                          <input type="text" id="city" name="city" class="form-input" required 
+                                       placeholder="San Francisco">
+                            </div>
+                     
+                        <div class="form-group">
+                                <label class="form-label" for="state">State *</label>
+                                <input type="text" id="state" name="state" class="form-input" required 
+                   
+                              placeholder="CA">
+                            </div>
+                            <div class

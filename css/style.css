@@ -667,3 +667,238 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--gray-400);
 }
+
+
+/* Add this to your existing CSS file - Updated sections for image support */
+
+/* Hero Section with Image Background */
+.hero {
+    background: 
+        linear-gradient(135deg, rgba(26, 32, 44, 0.8) 0%, rgba(45, 55, 72, 0.9) 100%),
+        url('../assets/hero-bg.jpg') center/cover no-repeat;
+    color: var(--white);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 60vh;
+}
+
+/* Alternative hero with multiple background options */
+.hero.hero-luxury {
+    background: 
+        linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(45, 55, 72, 0.8) 100%),
+        url('../assets/luxury-home.jpg') center/cover no-repeat;
+}
+
+.hero.hero-modern {
+    background: 
+        linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(45, 55, 72, 0.8) 100%),
+        url('../assets/modern-home.jpg') center/cover no-repeat;
+}
+
+.hero.hero-family {
+    background: 
+        linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(45, 55, 72, 0.8) 100%),
+        url('../assets/family-home.jpg') center/cover no-repeat;
+}
+
+/* Logo with image option */
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Logo with actual image instead of emoji */
+.logo.logo-with-image::before {
+    content: '';
+    width: 2.5rem;
+    height: 2.5rem;
+    background: url('../assets/logo.png') center/contain no-repeat;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Section icons with images */
+.section-icon.icon-image {
+    background-image: url('../assets/icons/home-icon.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--primary);
+}
+
+.section-icon.icon-details {
+    background-image: url('../assets/icons/details-icon.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--primary);
+}
+
+.section-icon.icon-features {
+    background-image: url('../assets/icons/features-icon.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--primary);
+}
+
+.section-icon.icon-notes {
+    background-image: url('../assets/icons/notes-icon.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--primary);
+}
+
+/* Platform logos in listing cards */
+.listing-platform-logo {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.listing-platform-logo.zillow {
+    background-image: url('../assets/logos/zillow-logo.png');
+}
+
+.listing-platform-logo.redfin {
+    background-image: url('../assets/logos/redfin-logo.png');
+}
+
+.listing-platform-logo.agent {
+    background-image: url('../assets/logos/agent-logo.png');
+}
+
+/* Decorative images in form sections */
+.form-section.with-bg-image {
+    background: 
+        linear-gradient(135deg, rgba(249, 250, 251, 0.95) 0%, rgba(243, 244, 246, 0.95) 100%),
+        url('../assets/form-bg-pattern.jpg') center/cover no-repeat;
+}
+
+/* Success/Error message icons */
+.message.success-message::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('../assets/icons/success-icon.png') center/contain no-repeat;
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.message.error-message::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('../assets/icons/error-icon.png') center/contain no-repeat;
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+/* Feature showcase images */
+.feature-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.feature-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.feature-image.ai-generation {
+    background-image: url('../assets/features/ai-generation.jpg');
+}
+
+.feature-image.multi-platform {
+    background-image: url('../assets/features/multi-platform.jpg');
+}
+
+.feature-image.time-saving {
+    background-image: url('../assets/features/time-saving.jpg');
+}
+
+.feature-content {
+    padding: 1.5rem;
+}
+
+/* Background patterns and textures */
+.main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/patterns/subtle-pattern.png') repeat;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.main-content > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive image handling */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* Better mobile performance */
+        min-height: 50vh;
+    }
+    
+    .feature-image {
+        height: 150px;
+    }
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo.logo-with-image::before {
+        background-image: url('../assets/logo@2x.png');
+    }
+    
+    .listing-platform-logo.zillow {
+        background-image: url('../assets/logos/zillow-logo@2x.png');
+    }
+    
+    .listing-platform-logo.redfin {
+        background-image: url('../assets/logos/redfin-logo@2x.png');
+    }
+    
+    .listing-platform-logo.agent {
+        background-image: url('../assets/logos/agent-logo@2x.png');
+    }
+}

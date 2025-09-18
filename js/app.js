@@ -586,3 +586,77 @@ window.AppState = AppState;
 window.CONFIG = CONFIG;
 
 console.log('🚀 PropListAI JavaScript loaded successfully!');
+
+// Add this function to your existing app.js file
+
+function displayListing(platform, content) {
+    const listingCard = document.createElement('div');
+    listingCard.className = 'listing-card animate-fade-in-up';
+    
+    // Create a unique ID for this listing
+    const listingId = `listing-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Get platform logo class
+    const platformClass = platform.toLowerCase().replace(/\s+/g, '');
+    
+    listingCard.innerHTML = `
+        <div class="listing-header">
+            <div class="listing-title">
+                <!-- Option 1: Platform name with logo (uncomment to use) -->
+                <!-- <span class="listing-platform-logo ${platformClass}"></span> -->
+                ${platform} Listing
+            </div>
+            <div class="listing-platform">${platform}</div>
+        </div>
+        <div class="listing-content" id="content-${listingId}">${content.replace(/\n/g, '<br>')}</div>
+        <div class="listing-actions">
+            <button class="btn-copy" onclick="copyToClipboard('${listingId}')">📋 Copy</button>
+        </div>
+    `;
+    
+    ui.listingResults.appendChild(listingCard);
+    
+    // Update stats
+    AppState.listings.push({ platform, content });
+    updateStats();
+    
+    console.log(`Listing displayed for ${platform}`);
+}
+
+// Function to dynamically change hero background
+function setHeroBackground(imageName) {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.backgroundImage = `
+            linear-gradient(135deg, rgba(26, 32, 44, 0.8) 0%, rgba(45, 55, 72, 0.9) 100%),
+            url('assets/${imageName}')
+        `;
+    }
+}
+
+// Function to preload images for better performance
+function preloadImages() {
+    const imagesToPreload = [
+        'assets/hero-bg.jpg',
+        'assets/luxury-home.jpg',
+        'assets/modern-home.jpg',
+        'assets/family-home.jpg',
+        'assets/logo.png',
+        'assets/logos/zillow-logo.png',
+        'assets/logos/redfin-logo.png',
+        'assets/logos/agent-logo.png'
+    ];
+
+    imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Call preload function when app initializes
+document.addEventListener('DOMContentLoaded', function() {
+    loadConfiguration();
+    setupEventListeners();
+    preloadImages(); // Add this line
+    console.log('🏡 PropListAI initialized successfully!');
+});
